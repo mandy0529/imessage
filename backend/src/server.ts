@@ -31,8 +31,7 @@ async function startApolloServer() {
 
     await server.start();
     server.applyMiddleware({
-        app,
-        path: "/"
+        app
     });
 
     await new Promise<void>((resolve) =>
