@@ -44,10 +44,10 @@ const resolvers = {
                 });
 
                 return { success: true };
-            } catch (error) {
+            } catch (error: any) {
                 console.log("Create Username ", error);
                 return {
-                    error: "create username error"
+                    error: error?.message
                 };
             }
         }
