@@ -1,3 +1,4 @@
+import { CreateUsernameResponse } from "./../../utils/types";
 import { gql } from "apollo-server-core";
 
 const typeDefs = gql`
