@@ -8,7 +8,7 @@ const resolvers = {
             _: any,
             args: { participantId: Array<string> },
             context: GraphQlContext
-        ) => {
+        ): Promise<{ conversationId: string }> => {
             const { participantId } = args;
             const { session, prisma } = context;
 
@@ -35,6 +35,10 @@ const resolvers = {
                     },
                     include: conversationPopulated
                 });
+
+                //  emit a CONVERSATION_CREATED event using pubsub
+
+                return { conversationId: conversation.id };
             } catch (error) {
                 console.log(error, "create conversation error");
                 throw new ApolloError("Error creating conversation");
