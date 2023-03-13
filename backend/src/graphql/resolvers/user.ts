@@ -11,14 +11,17 @@ const resolvers = {
             const { username: searchedUsername } = args;
             const { session, prisma } = context;
 
+            //  유저가 없을때 에러
             if (!session?.user) {
                 throw new ApolloError("Not Authorized");
             }
 
+            //  session에서 username 빼고,
             const {
                 user: { username: myUsername }
             } = session;
 
+            //  우리의 prisma에서 해당 search하는 User 찾기
             try {
                 const users = await prisma.user.findMany({
                     where: {
@@ -45,7 +48,7 @@ const resolvers = {
             const { username } = args;
             const { session, prisma } = context;
 
-            //  해당 유저가 아닐경우
+            //  해당 유저가 아닐 경우
             if (!session?.user) {
                 return {
                     error: "Not Authorized"
