@@ -1,5 +1,3 @@
-import { User } from "@prisma/client";
-import { ISODateString } from "next-auth";
 import { gql } from "apollo-server-core";
 
 const typeDefs = gql`
@@ -15,10 +13,10 @@ const typeDefs = gql`
 
     type Conversation {
         id: String
-        # latestMessage: Message
-        participants: [ConversationParticipant]
+        latestMessage: Message
+        conversationParticipant: [ConversationParticipant]
         createdAt: Date
-        updateAt: Date
+        updatedAt: Date
     }
 
     type ConversationParticipant {

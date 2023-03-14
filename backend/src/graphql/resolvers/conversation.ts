@@ -5,7 +5,21 @@ import { GraphQlContext } from "./../../utils/types";
 const resolvers = {
     Query: {
         conversation: async (_: any, __: any, context: GraphQlContext) => {
-            console.log("CONVERSATIONS QUERY");
+            const { session, prisma } = context;
+
+            if (!session?.user) {
+                throw new ApolloError("Not Authorized");
+            }
+
+            const {
+                user: { id: userId }
+            } = session;
+
+            try {
+            } catch (error: any) {
+                console.log(error, "conversation error");
+                throw new ApolloError(error?.message);
+            }
         }
     },
 
