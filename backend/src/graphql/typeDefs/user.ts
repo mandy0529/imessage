@@ -1,10 +1,15 @@
+import { ISODateString } from "next-auth";
 import { CreateUsernameResponse } from "./../../utils/types";
 import { gql } from "apollo-server-core";
 
 const typeDefs = gql`
     type User {
         id: String
+        name: String
         username: String
+        email: String
+        emailVerified: Boolean
+        image: String
     }
 
     type Query {

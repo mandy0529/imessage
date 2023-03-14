@@ -3,6 +3,12 @@ import { ApolloError } from "apollo-server-core";
 import { GraphQlContext } from "./../../utils/types";
 
 const resolvers = {
+    Query: {
+        conversation: async (_: any, __: any, context: GraphQlContext) => {
+            console.log("CONVERSATIONS QUERY");
+        }
+    },
+
     Mutation: {
         createConversation: async (
             _: any,
